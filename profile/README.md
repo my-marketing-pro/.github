@@ -8,13 +8,14 @@ We build an AI-assisted marketing operations platform that helps agencies and fr
 - [flutter_web_auth_2](https://github.com/my-marketing-pro/flutter_web_auth_2): Maintained Flutter plugin providing secure OAuth and deep-link flows used by our apps and the community.
 
 ## Shared Tooling
-- [.github](https://github.com/my-marketing-pro/.github): Org-level configuration (labels, branch rules, community files) plus profile content and scripts to keep repositories consistent.
-- [apply-org-labels.sh](https://github.com/my-marketing-pro/.github/blob/main/apply-org-labels.sh): Script that syncs organization labels to every repo via the GitHub CLI.
+- [github-configs](https://github.com/my-marketing-pro/.github): Org-level automation, profile content, and community health files.
+- [`labels/labels.json`](../labels/labels.json): Source of truth for the shared issue label taxonomy.
+- [`scripts/sync-org-labels.sh`](../scripts/sync-org-labels.sh): GitHub CLI helper that syncs the shared labels across every writable repository (defaults to `labels/labels.json`).
 
 Additional private repositories cover go-to-market collateral, product discovery, and prototype experiments. Reach out in Slack or the #engineering channel if you need access.
 
 ## Working Together
 - File issues in the repository that owns the surface area (`mmp-web-app` for web, `mmp-mobile` for native, etc.).
-- Use the shared labels defined in `.github/settings.yml` to tag work by type, priority, platform, and status.
+- Use the shared labels defined in `labels/labels.json` (applied via `scripts/sync-org-labels.sh`) to tag work by type, priority, platform, and status.
 - Follow the contribution guides in each repository and request reviews from `@my-marketing-pro/engineering` for cross-team changes.
 - For questions about ownership or process, start a GitHub Discussion or message the engineering leads in Slack.

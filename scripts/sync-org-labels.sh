@@ -4,11 +4,14 @@
 
 set -euo pipefail
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+DEFAULT_LABELS="$SCRIPT_DIR/../labels/labels.json"
+
 usage() {
   printf 'Usage: %s <org-slug> [labels.json]\n\n' "$0"
   printf 'Arguments:\n'
   printf '  <org-slug>    GitHub organization to update (required)\n'
-  printf '  [labels.json] Path to the labels definition file (default: labels.json in cwd)\n\n'
+  printf '  [labels.json] Path to the labels definition file (default: %s)\n\n' "$DEFAULT_LABELS"
   printf 'Requirements:\n'
   printf '  - GitHub CLI (gh) authenticated with write access to the organization\n'
   printf '  - jq installed locally\n'
@@ -20,7 +23,8 @@ if [[ $# -lt 1 ]]; then
 fi
 
 ORG="$1"
-LABEL_FILE="${2:-labels.json}"
+LABEL_ARG="${2:-}"
+LABEL_FILE="${LABEL_ARG:-$DEFAULT_LABELS}"
 
 if [[ ! -f "$LABEL_FILE" ]]; then
   echo "[x] Label file not found: $LABEL_FILE" >&2
